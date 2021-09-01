@@ -15,6 +15,7 @@ import br.com.java.springbootcliente.service.ClienteService;
 
 @RestController
 @RequestMapping("/api/cliente")
+@CrossOrigin(origins = "http://localhost:8000")
 public class ClienteControle {
     
     @Autowired
