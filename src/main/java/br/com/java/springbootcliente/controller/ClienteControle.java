@@ -28,7 +28,7 @@ public class ClienteControle {
             Cliente returnarCliente = service.salvarCliente(cliente);
 
             return new ResponseEntity<Message>(
-                    new Message("Atualizada com sucesso!", Arrays.asList(returnarCliente), ""), HttpStatus.OK);
+                    new Message("Adicionado com sucesso!", Arrays.asList(returnarCliente), ""), HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<Message>(new Message("Falha ao salvar um novo cliente!", null, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
