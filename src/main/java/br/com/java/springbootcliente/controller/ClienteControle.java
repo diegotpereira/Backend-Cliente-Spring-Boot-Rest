@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.java.springbootcliente.model.Cliente;
 import br.com.java.springbootcliente.model.Message;
+import br.com.java.springbootcliente.repository.ClienteRepositorio;
 import br.com.java.springbootcliente.service.ClienteService;
 
 @RestController
@@ -20,6 +21,9 @@ public class ClienteControle {
     
     @Autowired
     ClienteService service;
+
+    @Autowired
+    ClienteRepositorio repositorio;
 
     @PostMapping("/novo")
     public ResponseEntity<Message> addNovoCliente(@RequestBody Cliente cliente) {
@@ -88,6 +92,7 @@ public class ClienteControle {
                 cliente.setSobrenome(_cliente.getSobrenome());
                 cliente.setEndereco(_cliente.getEndereco());
                 cliente.setIdade(_cliente.getIdade());
+                cliente.setAtivo(_cliente.isAtivo());
 
                 // salvar a mudança no banco de dados
                 service.atualizarliente(cliente);
@@ -99,5 +104,11 @@ public class ClienteControle {
         } catch (Exception e) {
             return new ResponseEntity<Message>(new Message("Falha", null, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/buscarPorIdade/idade/{idade}")
+    public List<Cliente> buscarPorIdade(@PathVariable int idade) {
+        List<Cliente> clientes = repositorio.findByIdade(idade);
+        return clientes;
     }
 }

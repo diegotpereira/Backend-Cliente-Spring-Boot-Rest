@@ -22,6 +22,9 @@ public class Cliente {
     @Column(name = "idade")
     private int idade;
 
+    @Column(name = "ativo")
+    private boolean ativo;
+
     public Cliente() {
     }
 
@@ -31,6 +34,7 @@ public class Cliente {
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.idade = idade;
+        this.ativo = false;
     }
 
     public long getId() {
@@ -73,9 +77,17 @@ public class Cliente {
         this.idade = idade;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public String toString() {
-        return "Cliente [endereco=" + endereco + ", id=" + id + ", idade=" + idade + ", nome=" + nome + ", sobrenome="
-                + sobrenome + "]";
-    }    
+        return "Cliente [ativo=" + ativo + ", endereco=" + endereco + ", id=" + id + ", idade=" + idade + ", nome="
+                + nome + ", sobrenome=" + sobrenome + "]";
+    }
 }
